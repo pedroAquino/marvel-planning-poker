@@ -1,8 +1,6 @@
-import '@fontsource/roboto-condensed';
-
 function Home() {
   return (
-    <h1 style={{fontFamily: 'Roboto Condensed'}} >Home</h1>
+    <h1>Home</h1>
   ); 
 }
 
