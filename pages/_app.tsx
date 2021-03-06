@@ -6,6 +6,9 @@ const theme = extendTheme({
     body: 'Roboto Condensed',
     heading: 'Roboto Condensed',
     mono: 'Roboto Condensed'
+  },
+  letterSpacings: {
+    xl: '0.125em'
   }
 });
 
