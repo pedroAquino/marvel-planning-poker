@@ -4,8 +4,8 @@ export interface ButtonProps extends CButtonProps {
   children: React.ReactNode;
 }
 
-function Button({ children }: ButtonProps) {
-  return <CButton>{children}</CButton>;
+function Button({ children, ...rest }: ButtonProps) {
+  return <CButton colorScheme="blue" size="md" {...rest} >{children}</CButton>;
 };
 
 export default Button;
