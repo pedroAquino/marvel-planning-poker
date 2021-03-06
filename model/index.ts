@@ -32,9 +32,18 @@ export interface IMarvelCharacter {
   image: string;
 }
 
+export enum PokerCardSize {
+  one = '1',
+  two = '2',
+  three = '3',
+  five = '5',
+  eight = '8',
+  thirteen = '13',
+}
+
 export interface IPokerCard {
   marvelCharacter: IMarvelCharacter;
-  size: '1' | '2' | '3' | '5' | '8' | '13';
+  size: PokerCardSize;
 }
 
 export const MarvelCharacter = ({ name = '', image = '' } = {}): IMarvelCharacter => ({
@@ -42,7 +51,7 @@ export const MarvelCharacter = ({ name = '', image = '' } = {}): IMarvelCharacte
   image
 });
 
-export const PokerCard = ({ marvelCharacter = MarvelCharacter(), size }): IPokerCard => ({
+export const PokerCard = ({ marvelCharacter = MarvelCharacter(), size = PokerCardSize['one'] }): IPokerCard => ({
   marvelCharacter,
   size
 });
