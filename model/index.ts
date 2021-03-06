@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 export enum UserRole {
-  oberver = 'observer',
+  observer = 'observer',
   player = 'player'
 }
 
