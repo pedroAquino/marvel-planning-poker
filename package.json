@@ -4,9 +4,10 @@
   "description": "Marvel planning poker",
   "main": "index.js",
   "dependencies": {
+    "@fontsource/roboto-condensed": "^4.2.2",
     "next": "^10.0.4",
-    "react-dom": "^17.0.1",
-    "react": "^17.0.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@types/node": "^14.14.20",
