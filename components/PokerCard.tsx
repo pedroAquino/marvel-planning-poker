@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Center, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 
 interface PokerCardProps {
@@ -27,18 +27,25 @@ const getCardDimensions = (size) => ({
   lg: largeDimension
 }[size])
 
+const CartTitle = ({ children }) => {
+  return (
+  <Heading size="md" p="1" textTransform="uppercase">
+    <Center>{children}</Center>
+  </Heading>
+  );
+};
+
 export default function PokerCard({ imgSrc, bottomTitle, title, size = 'md' }: PokerCardProps) {
   const dimensions = getCardDimensions(size);
-  console.log(dimensions);
   return (
-    <Box>
-      <Heading size="md">{title}</Heading>
+    <Box p="5" color="white" bg="black" borderRadius="lg">
+      <CartTitle>{title}</CartTitle>
       <Image
         src="/images/hulk.jpeg"
         {...dimensions}
         alt={title} 
       />
-      <Heading size="md">{bottomTitle}</Heading>
+      <CartTitle>{bottomTitle}</CartTitle>
     </Box>
   );
 };
