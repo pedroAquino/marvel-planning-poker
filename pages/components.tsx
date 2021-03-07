@@ -33,7 +33,18 @@ function Components() {
             imgSrc="/images/hulk.jpeg"
             size="sm"
             playerName="Pedro"
-            back
+            variant="back"
+          />
+        </Box>
+        <Box h={60}>
+          <Heading mb="4" size="sm">Poker Card Empty</Heading>
+          <PokerCard
+            title="Hulk"
+            bottomTitle="13"
+            imgSrc="/images/hulk.jpeg"
+            size="sm"
+            playerName="Pedro"
+            variant="empty"
           />
         </Box>
       </Stack>

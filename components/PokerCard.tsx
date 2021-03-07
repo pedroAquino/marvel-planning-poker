@@ -9,7 +9,7 @@ interface PokerCardProps {
   title: string;
   playerName?: string;
   size?: 'sm' | 'md' | 'lg';
-  back?: boolean;
+  variant?: 'back' | 'normal' | 'empty';
 }
 
 const largeDimension = {
@@ -25,16 +25,15 @@ const CartTitle = ({ children, p = '1' }) => {
   );
 };
 
-const CardBody = ({ imgSrc, bottomTitle, title, size, back, dimensions, playerName }) => {
-  if (back) {
-    return (
+const CardBody = ({ imgSrc, bottomTitle, title, size, variant, dimensions, playerName }) => {
+  const variants = {
+    back: (
       <Flex flexDirection="column" justifyContent="center" w="100%" h="100%" >
         <CartTitle p="4">{playerName}</CartTitle>
         <Logo color="white" />
       </Flex>
-    );
-  } else {
-    return (
+    ),
+    normal: (
       <>
         <CartTitle>{title}</CartTitle>
         <Image
@@ -43,25 +42,51 @@ const CardBody = ({ imgSrc, bottomTitle, title, size, back, dimensions, playerNa
           alt={title}
         />
       </>
-    );
-  }
+    ),
+    empty: (
+      <Flex flexDirection="column" justifyContent="center" w="100%" h="100%" >
+        <CartTitle>{playerName}</CartTitle>
+      </Flex>
+    )
+  };
+  return variants[variant];
 };
 
-export default function PokerCard({ imgSrc, bottomTitle, title, size = 'md', playerName, back }: PokerCardProps) {
+const variantStyles = (dimensions, variant) => ({
+  back: {
+    bg: 'gray.800',
+    color: 'white',
+  },
+  normal: {
+    bg: 'gray.800',
+    color: 'white',
+  },
+  empty: {
+    bg: 'transparent',
+    color: 'gray.400',
+    w: dimensions.width + 40,
+    border: '2px',
+    borderStyle: 'dashed',
+    borderColor: 'gray.200'
+  }
+}[variant]);
+
+export default function PokerCard({ imgSrc, bottomTitle, title, size = 'md', playerName, variant = 'normal' }: PokerCardProps) {
   const dimensions = getDimensions(largeDimension, size);
   const cardHeight = dimensions.height + 111;
+  const styles = variantStyles(dimensions, variant);
   return (
-    <Box h={cardHeight} p="5" color="white" bg="gray.800" borderRadius="lg">
+    <Box h={cardHeight} {...styles} p="5" borderRadius="lg">
       <CardBody
         imgSrc={imgSrc}
         bottomTitle={bottomTitle}
         title={title}
         size={size}
-        back={back}
+        variant={variant}
         dimensions={dimensions}
         playerName={playerName}
       />
-      {!back && <CartTitle>{bottomTitle}</CartTitle>}
+      {variant === 'normal' && <CartTitle>{bottomTitle}</CartTitle>}
     </Box>
   );
 };
