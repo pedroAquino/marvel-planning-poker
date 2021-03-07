@@ -21,8 +21,19 @@ function Components() {
           <PokerCard
             title="Hulk"
             bottomTitle="13"
-            imgSrc=""
+            imgSrc="/images/hulk.jpeg"
             size="sm"
+          />
+        </Box>
+        <Box h={60}>
+          <Heading mb="4" size="sm">Poker Card Back</Heading>
+          <PokerCard
+            title="Hulk"
+            bottomTitle="13"
+            imgSrc="/images/hulk.jpeg"
+            size="sm"
+            playerName="Pedro"
+            back
           />
         </Box>
       </Stack>
