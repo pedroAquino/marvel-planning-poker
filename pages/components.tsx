@@ -1,7 +1,36 @@
-import { Box, Stack, Heading } from '@chakra-ui/react';
+import { Box, Stack, Heading, useDisclosure } from '@chakra-ui/react';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 import PokerCard from '../components/PokerCard';
+import Modal from '../components/Modal';
+import JoinSessionForm from '../components/JoinSessionForm';
+import StartNewSession from '../components/StartNewSessionForm';
+
+const JoinSession = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <Box h={60}>
+      <Heading mb="4" size="sm">Join session modal</Heading>
+      <Button onClick={onOpen} size="sm">Show Modal</Button>
+      <Modal title="Join an existing session" isOpen={isOpen} onClose={onClose}>
+        <JoinSessionForm onJoinSession={() => null} />
+      </Modal>
+    </Box>
+  );
+};
+
+const StartSession = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <Box h={60}>
+      <Heading mb="4" size="sm">Start session modal</Heading>
+      <Button onClick={onOpen} size="sm">Show Modal</Button>
+      <Modal title="Start new session" isOpen={isOpen} onClose={onClose}>
+        <StartNewSession onStartSession={() => null} />
+      </Modal>
+    </Box>
+  );
+};
 
 function Components() {
   return (
@@ -47,6 +76,8 @@ function Components() {
             variant="empty"
           />
         </Box>
+        <JoinSession />
+        <StartSession />
       </Stack>
     </Box>
   );
