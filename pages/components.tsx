@@ -5,6 +5,8 @@ import PokerCard from '../components/PokerCard';
 import Modal from '../components/Modal';
 import JoinSessionForm from '../components/JoinSessionForm';
 import StartNewSession from '../components/StartNewSessionForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const JoinSession = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -78,6 +80,10 @@ function Components() {
         </Box>
         <JoinSession />
         <StartSession />
+        <Box h={60}>
+          <Heading mb="4" size="sm">Icon</Heading>
+          <FontAwesomeIcon icon={faGithub} size="3x" />
+        </Box>
       </Stack>
     </Box>
   );
