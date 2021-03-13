@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import withLayout from '../../hocs/withLayout';
 
 function Session() {
   const router = useRouter();
@@ -8,4 +9,4 @@ function Session() {
   );
 }
 
-export default Session;
+export default withLayout(Session);
