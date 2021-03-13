@@ -3,7 +3,7 @@ import { Box, Heading, Center } from '@chakra-ui/react';
 import getDimensions from './helpers/getDimensions';
 
 interface LogoProps {
-  color: any;
+  color?: any;
   size?: 'sm' | 'md' | 'lg';
 }
 
