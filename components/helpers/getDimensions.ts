@@ -3,7 +3,7 @@ interface Dimension {
   height: number;
 }
 
-const decreaseBy = (factor: number, value: number) => value / factor;
+export const decreaseBy = (factor: number, value: number) => value / factor;
 
 export const getDimensions = (largestDimension: Dimension, size: 'sm' | 'md' | 'lg'): Dimension => ({
   sm: { 
