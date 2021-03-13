@@ -1,7 +1,25 @@
 import Image from 'next/image';
 import { Box, Heading, Center } from '@chakra-ui/react';
+import getDimensions from './helpers/getDimensions';
 
-export default function Logo({ width = 150, height = 60, color = 'black' } = {}) {
+interface LogoProps {
+  color: any;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const lg = {
+  width: 300,
+  height: 120,
+};
+
+const headingSizes = {
+  sm: 'sm',
+  md: 'md',
+  lg: 'xl',
+};
+
+export default function Logo({ size = 'md', color = 'black' }: LogoProps) {
+  const { width, height } = getDimensions(lg, size);
   return (
     <Box w={width} >
       <Image
@@ -11,7 +29,7 @@ export default function Logo({ width = 150, height = 60, color = 'black' } = {})
         alt="marvel" 
       />
       <Center>
-        <Heading color={color} letterSpacing="xl" size="sm">PLANNING POKER</Heading>
+        <Heading color={color} size={headingSizes[size]}>PLANNING POKER</Heading>
       </Center>
     </Box>
   );
