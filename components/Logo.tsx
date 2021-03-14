@@ -5,6 +5,8 @@ import getDimensions from './helpers/getDimensions';
 interface LogoProps {
   color?: any;
   size?: 'sm' | 'md' | 'lg';
+  width?: number;
+  height?: number;
 }
 
 const lg = {

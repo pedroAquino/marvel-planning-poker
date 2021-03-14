@@ -53,7 +53,7 @@ function Components() {
             title="Hulk"
             bottomTitle="13"
             imgSrc="/images/hulk.jpeg"
-            size="sm"
+            //size="sm"
           />
         </Box>
         <Box h={60}>
@@ -62,7 +62,7 @@ function Components() {
             title="Hulk"
             bottomTitle="13"
             imgSrc="/images/hulk.jpeg"
-            size="sm"
+            //size="sm"
             playerName="Pedro"
             variant="back"
           />
@@ -73,7 +73,7 @@ function Components() {
             title="Hulk"
             bottomTitle="13"
             imgSrc="/images/hulk.jpeg"
-            size="sm"
+            //size="sm"
             playerName="Pedro"
             variant="empty"
           />
