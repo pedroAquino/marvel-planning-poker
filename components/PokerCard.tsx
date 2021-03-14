@@ -66,6 +66,12 @@ const variantStyles = (variant) => ({
   normal: {
     bg: 'gray.800',
     color: 'white',
+    _hover: {
+      cursor: 'pointer',
+      boxShadow: 'dark-lg',
+      transition: 'all .2s ease-in-out',
+      transform: 'scale(1.2)',
+    }
   },
   empty: {
     bg: 'transparent',
@@ -89,7 +95,12 @@ export function PokerCard({ imgSrc, bottomTitle, title, size = 'md', playerName,
     ...sizeStyles(size),
   };
   return (
-    <Box h={dimensions.height} w={dimensions.width} {...styles} borderRadius="lg">
+    <Box
+      h={dimensions.height}
+      w={dimensions.width}
+      borderRadius="lg"
+      {...styles}
+    >
       <CardBody
         imgSrc={imgSrc}
         bottomTitle={bottomTitle}

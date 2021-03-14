@@ -9,8 +9,8 @@ function PokerCardList({cards, ...props}: PokerCardListProps) {
   return (
     <Flex {...props} flexWrap="wrap" justifyContent="space-between">
       {cards.map((card, index) => (
-        <Box mb={["2", "2", "2"]} >
-          <PokerCard key={index} {...card} />
+        <Box key={index} mb={["2", "2", "2"]} >
+          <PokerCard {...card} />
         </Box>
       ))}
     </Flex>
