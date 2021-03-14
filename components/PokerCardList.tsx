@@ -1,4 +1,4 @@
-import { Flex, FlexProps } from "@chakra-ui/layout";
+import { Box, Flex, FlexProps } from "@chakra-ui/layout";
 import { PokerCard, PokerCardProps } from './PokerCard';
 
 interface PokerCardListProps extends FlexProps {
@@ -7,8 +7,12 @@ interface PokerCardListProps extends FlexProps {
 
 function PokerCardList({cards, ...props}: PokerCardListProps) {
   return (
-    <Flex {...props} justifyContent="space-between">
-      {cards.map((card) => <PokerCard {...card} />)}
+    <Flex {...props} flexWrap="wrap" justifyContent="space-between">
+      {cards.map((card, index) => (
+        <Box mb={["2", "2", "2"]} >
+          <PokerCard key={index} {...card} />
+        </Box>
+      ))}
     </Flex>
   );
 }
