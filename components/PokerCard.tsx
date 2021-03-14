@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { getDimensions, decreaseBy } from './helpers/getDimensions';
 import Logo from './Logo';
 
-interface PokerCardProps {
+export interface PokerCardProps {
   imgSrc: string;
   bottomTitle: string;
   title: string;
@@ -82,7 +82,7 @@ const sizeStyles = (size) => ({
   lg: {},
 }[size]);
 
-export default function PokerCard({ imgSrc, bottomTitle, title, size = 'md', playerName, variant = 'normal' }: PokerCardProps) {
+export function PokerCard({ imgSrc, bottomTitle, title, size = 'md', playerName, variant = 'normal' }: PokerCardProps) {
   const dimensions = getDimensions(largeDimension, size);
   const styles = {
     ...variantStyles(variant),
@@ -103,3 +103,5 @@ export default function PokerCard({ imgSrc, bottomTitle, title, size = 'md', pla
     </Box>
   );
 };
+
+export default PokerCard;
