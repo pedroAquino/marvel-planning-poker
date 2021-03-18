@@ -1,13 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
 import Button from '../components/Button';
-import Head from 'next/head';
-
-declare global {
-  interface Window {
-    Pusher: any;
-  }
-}
+import Pusher from 'pusher-js';
 
 const broadCastMessage = () => {
   fetch('/api/real-time', { 
@@ -24,8 +18,6 @@ const broadCastMessage = () => {
 function RealTime() {
   
   useEffect(() => {
-    const { Pusher } = window;
-
     const pusher = new Pusher('3911a524678e1dfdcd57', {
       cluster: 'eu'
     });
@@ -38,9 +30,6 @@ function RealTime() {
 
   return (
     <>
-      <Head>
-        <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-      </Head>
       <Box p="4" >
         <Heading>Real Time</Heading>
         <Button size="sm" variant="outline" onClick={broadCastMessage}>BROADCAST MESSAGE</Button>
