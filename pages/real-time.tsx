@@ -5,7 +5,7 @@ import Pusher from 'pusher-js';
 import { v4 as uuid } from 'uuid';
 
 const broadCastMessage = () => {
-  fetch('/api/real-time', { 
+  return fetch('/api/real-time', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -24,13 +24,14 @@ function RealTime() {
     const pusher = new Pusher('3911a524678e1dfdcd57', {
       cluster: 'eu'
     });
-
     const channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      console.log(data);
-      setMessages([...messages, data.message]);
+    channel.bind('my-event', (data) => {
+      setMessages((messages) => {
+        console.log(messages);
+        return [...messages, data.message]
+      });
     });
-  });
+  }, []);
 
   return (
     <>
