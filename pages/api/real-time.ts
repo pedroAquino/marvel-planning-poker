@@ -5,16 +5,17 @@ const pusher = new Pusher({
   key: '3911a524678e1dfdcd57',
   secret: '6922fe0e3e4ef66f989b',
   cluster: 'eu',
-  useTLS: true
+  useTLS: false
 });
 
-export default function realTime(req, res) {
+export default async function realTime(req, res) {
   const request = req.body;
   const response = {
     message: request.message
   };
 
-  pusher.trigger('my-channel', 'my-event', response);
-
-  res.status(200).json(response); 
+  const pusherRes = await pusher.trigger('my-channel', 'my-event', response);
+  if (pusherRes.status === 200) {
+    res.status(200).json(response);
+  }
 }
