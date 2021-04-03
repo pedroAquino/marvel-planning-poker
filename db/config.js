@@ -12,5 +12,6 @@ const config = {
 module.exports = {
   development: config,
   test: config,
-  production: config
+  production: config,
+  preview: config,
 };
