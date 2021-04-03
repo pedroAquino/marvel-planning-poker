@@ -3,12 +3,14 @@ import { IUser, User } from './User';
 
 export interface ISession  {
   id: string;
+  name: string;
   creator: IUser;
-  users: IUser[];
+  participants: IUser[];
 }
 
-export const Session = ({id = uuid(), creator = User(), users = []} = {}): ISession => ({
+export const Session = ({id = uuid(), name='', creator = User(), participants = []} = {}): ISession => ({
   id,
+  name,
   creator,
-  users
+  participants
 });
