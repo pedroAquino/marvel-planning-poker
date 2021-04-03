@@ -8,7 +8,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    return queryInterface.addColumn('Sessions', 'userId', {
+    return queryInterface.addColumn('Sessions', 'creatorId', {
       type: Sequelize.INTEGER,
       references: {
         model: 'Users',
@@ -26,6 +26,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    return queryInterface.removeColumn('Sessions', 'userId');
+    return queryInterface.removeColumn('Sessions', 'creatorId');
   }
 };

@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Sessions.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    displayId: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4
   }, {
     sequelize,
     modelName: 'Sessions',
