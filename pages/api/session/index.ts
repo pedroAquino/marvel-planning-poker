@@ -1,4 +1,5 @@
-import { Session, User, IUser, ISession } from '../../../model';
+import { Session, ISession } from '../../../model/Session';
+import { User, IUser, } from '../../../model/User';
 
 interface ICreateSessionRequest {
   creator: IUser;
