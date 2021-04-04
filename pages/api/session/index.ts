@@ -27,18 +27,16 @@ export default async function handler(req, res) {
   };
   const { sequelize } = db;
 
-  console.log('CONFIG >>>>>>>>>> ', sequelize.config);
+  try {
+    await sequelize.authenticate();
+  } catch (error) {
+    console.error('Not Connected', error);
+    const errResponse = {
+      stack: error
+    };
+    res.status(500).json(errResponse);
+  }
+  await sequelize.close();
 
-  // try {
-  //   await sequelize.authenticate();
-  // } catch (error) {
-  //   console.error('Not Connected', error);
-  //   const errResponse = {
-  //     stack: error
-  //   };
-  //   res.status(500).json(errResponse);
-  // }
-  // await sequelize.close();
-
-  res.status(200).json(sequelize.config);
+  res.status(200).json(response);
 };
