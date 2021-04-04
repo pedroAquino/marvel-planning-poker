@@ -27,6 +27,8 @@ export default async function handler(req, res) {
   };
   const { sequelize } = db;
 
+  console.log('CONFIG >>>>>>>>>> ', sequelize.config);
+
   try {
     await sequelize.authenticate();
   } catch (error) {

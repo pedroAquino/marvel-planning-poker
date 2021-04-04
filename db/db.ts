@@ -5,8 +5,6 @@ import mysql2 from 'mysql2';
 const VERCEL_ENV = process.env.VERCEL_ENV;
 const config = configs[VERCEL_ENV];
 
-console.log('CONFIG >>>>>>>>>> ', config);
-
 const sequelize = new Sequelize({
   ...config,
   dialectModule: mysql2,
