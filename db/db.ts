@@ -1,11 +1,13 @@
 import { Sequelize } from 'sequelize';
 import configs from './config';
+import mysql2 from 'mysql2';
 
 const VERCEL_ENV = process.env.VERCEL_ENV;
 const config = configs[VERCEL_ENV];
 
 const sequelize = new Sequelize({
   ...config,
+  dialectModule: mysql2,
   pool: {
     max: 5,
     min: 0,
