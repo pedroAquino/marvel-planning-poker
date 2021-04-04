@@ -11,14 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Sessions.belongsTo(models.User);
-      models.Sessions.hasMany(models.User);
+      models.Sessions.belongsTo(models.Users);
+      models.Sessions.hasMany(models.Users);
     }
   };
   Sessions.init({
     name: DataTypes.STRING,
-    displayId: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4
+    displayId: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'Sessions',
