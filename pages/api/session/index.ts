@@ -1,17 +1,19 @@
-import { Session, User, IUser, ISession } from '../../../model';
+import models from '../../../db/models/index';
 
-interface ICreateSessionRequest {
-  creator: IUser;
+async function getSessions(req, res) {
+  const sessions = await models.Sessions.findAll();
+  const user = await sessions[0].getUser();
+  res.status(200).json(user);
 }
 
-interface ICreateSessionResponse {
-  session: ISession;
+async function createSession(req, res) {
+  return null;
 }
 
-export default function handler(req, res) {
-  const request: ICreateSessionRequest = req.body;
-  const response: ICreateSessionResponse = {
-    session: Session({ creator: User(request.creator) })
+export default async function handler(req, res) {
+  const handlers = {
+    GET: getSessions,
+    POST: createSession
   };
-  res.status(200).json(response);
+  await handlers[req.method](req, res);
 };
