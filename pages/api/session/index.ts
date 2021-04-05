@@ -1,28 +1,16 @@
-import { Session, ISession } from '../../../model/Session';
-import { User, IUser, } from '../../../model/User';
+import { SessionModel } from '../../../db/models/sessions';
 import models from '../../../db/models/index';
 
-interface ICreateSessionRequest {
-  creator: IUser;
-}
-
-interface ICreateSessionResponse {
-  session: ISession;
-}
-
 async function getSessions(req, res) {
-  const sessions = await models.Sessions.findAll();
+  const sessions: SessionModel[] = await models.Sessions.findAll();
+  // sessions.map((session: SessionModel) => {
+  //   session 
+  // });
   res.status(200).json(sessions);
 }
 
 async function createSession(req, res) {
-  const request: ICreateSessionRequest = req.body;
-  
-  const response: ICreateSessionResponse = {
-    session: Session({ creator: User(request.creator) })
-  };
-  
-  res.status(200).json(response);
+  return null;
 }
 
 export default async function handler(req, res) {

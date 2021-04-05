@@ -1,10 +1,12 @@
-import { Sequelize } from 'sequelize';
+import { DataTypes, Sequelize } from 'sequelize';
 import configs from '../config';
 import Sessions from './sessions';
 import Users from './users';
 
+type Db = { sequelize: any; Sequelize: Sequelize } & any;
+
 const config = configs[process.env.VERCEL_ENV];
-const db = {};
+const db: Db = {};
 
 const _models = [
   Sessions,
@@ -19,7 +21,7 @@ if (config.use_env_variable) {
 }
 
 _models.forEach(_model => {
-  const model = _model(sequelize, Sequelize.DataTypes);
+  const model = _model(sequelize, DataTypes);
   db[model.name] = model;
 });
 
