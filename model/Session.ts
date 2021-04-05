@@ -1,14 +1,14 @@
-import { IUser, User } from './User';
+import { UserModel } from './User';
 
 export interface SessionModel  {
   id: number;
   displayId: string;
   name: string;
-  creator: IUser;
-  participants: IUser[];
+  creator: UserModel;
+  participants: UserModel[];
 }
 
-export const Session = ({id = 0, displayId='', name='', creator = User(), participants = []} = {}): SessionModel => ({
+export const Session = ({id = 0, displayId='', name='', creator = null, participants = []} = {}): SessionModel => ({
   id,
   displayId,
   name,
