@@ -5,7 +5,7 @@ import {
   HasManyAddAssociationMixin,
   HasOneGetAssociationMixin,
 } from 'sequelize';
-import { UserModel } from './users';
+import { UserDbModel } from './users';
 
 interface AssociateModel {
   associate: (models: any) => void;
@@ -17,21 +17,20 @@ interface SessionAttributes {
   displayId: string;
 
   // associations
-  getUsers?: HasManyGetAssociationsMixin<UserModel>;
-  getUser?: HasOneGetAssociationMixin<UserModel>;
-  addUser?: HasManyAddAssociationMixin<UserModel, number>;
+  getUsers?: HasManyGetAssociationsMixin<UserDbModel>;
+  getUser?: HasOneGetAssociationMixin<UserDbModel>;
+  addUser?: HasManyAddAssociationMixin<UserDbModel, number>;
 }
 
 interface SessionCreationAttributes extends Optional<SessionAttributes, 'id'>{};
 
-export type SessionModel = ModelDefined<SessionAttributes, SessionCreationAttributes>;
+export type SessionDbModel = ModelDefined<SessionAttributes, SessionCreationAttributes>;
 
 export default (sequelize, DataTypes) => {
   // define fields connected with database
-  const Session: SessionModel & AssociateModel = sequelize.define('Sessions', {
+  const Session: SessionDbModel & AssociateModel = sequelize.define('Sessions', {
     name: DataTypes.STRING,
     displayId: DataTypes.UUID,
-
   });
 
   // define associations method

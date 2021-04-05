@@ -8,10 +8,10 @@ interface UserAttributes {
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'>{};
 
-export type UserModel = ModelDefined<UserAttributes, UserCreationAttributes>;
+export type UserDbModel = ModelDefined<UserAttributes, UserCreationAttributes>;
 
 export default (sequelize, DataTypes) => {
-  const User: UserModel = sequelize.define(
+  const User: UserDbModel = sequelize.define(
     'Users',
     {
       name: DataTypes.STRING,

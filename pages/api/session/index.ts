@@ -1,12 +1,9 @@
-import { SessionModel } from '../../../db/models/sessions';
 import models from '../../../db/models/index';
 
 async function getSessions(req, res) {
-  const sessions: SessionModel[] = await models.Sessions.findAll();
-  // sessions.map((session: SessionModel) => {
-  //   session 
-  // });
-  res.status(200).json(sessions);
+  const sessions = await models.Sessions.findAll();
+  const user = await sessions[0].getUser();
+  res.status(200).json(user);
 }
 
 async function createSession(req, res) {
