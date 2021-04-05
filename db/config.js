@@ -6,7 +6,13 @@ const config = {
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   host: process.env.DATABASE_HOST,
-  dialect: "mysql"  
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 20000,
+    idle: 10000
+  }
 };
 
 module.exports = {
