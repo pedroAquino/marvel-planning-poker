@@ -1,15 +1,16 @@
-import { v4 as uuid } from 'uuid';
 import { IUser, User } from './User';
 
-export interface ISession  {
-  id: string;
+export interface SessionModel  {
+  id: number;
+  displayId: string;
   name: string;
   creator: IUser;
   participants: IUser[];
 }
 
-export const Session = ({id = uuid(), name='', creator = User(), participants = []} = {}): ISession => ({
+export const Session = ({id = 0, displayId='', name='', creator = User(), participants = []} = {}): SessionModel => ({
   id,
+  displayId,
   name,
   creator,
   participants

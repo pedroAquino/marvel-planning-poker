@@ -1,14 +1,14 @@
 export enum UserRole {
-  observer = 'observer',
-  player = 'player'
+  observer = 'OBSERVER',
+  player = 'PLAYER'
 }
 
-export interface IUser {
+export interface UserModel {
   name: string;
   role: UserRole;
 }
 
-export const User = ({ name = '', role = UserRole['player'] } = {}): IUser => ({
+export const User = ({ name = '', role = UserRole['PLAYER'] } = {}): UserModel => ({
   name,
   role
 });
