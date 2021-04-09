@@ -1,5 +1,6 @@
 import { Session } from '../model/Session';
 import { createSession, getSessions, getSession } from './sessionsRepository';
+import { createUser } from './usersRepository';
 import { v4 as uuid } from 'uuid';
 import { User, UserRole } from '../model/User';
 
@@ -9,10 +10,11 @@ test('getSessions returns at least the default session from database', async () 
 });
 
 test('createSession should create a session and return the created session', async () => {
+  const user = await createUser(User({ name: 'Lucas Doe', role: UserRole['PLAYER'] }));
   const session = Session({
     displayId: uuid(),
     name: 'My new Session',
-    creator: User({ name: 'Lucas Doe', role: UserRole['PLAYER'] })
+    creator: user
   });
   const created = await createSession(session);
   session.id = created.id;

@@ -1,7 +1,7 @@
 import { Session, SessionModel } from '../model/Session';
 import models from '../db/models/index';
 import { createUser } from './usersRepository';
-import { User } from '../model/User';
+import { User, UserModel } from '../model/User';
 
 export async function getSessions(): Promise<SessionModel[]> {
   const dbSessions = await models.Sessions.findAll();
@@ -33,18 +33,14 @@ export async function getSession(idOrDisplayId: number | string): Promise<Sessio
   return session;
 }
 
-export async function createSession(session:SessionModel): Promise<SessionModel> {
-  const user = await createUser(session.creator);
-  
+export async function createSession(session:SessionModel): Promise<SessionModel> {  
   const createdSession = await models.Sessions.create({
     ...session,
-    UserId: user.id
+    UserId: session.creator.id
   });
-  
-  const creator = await createdSession.getUser();
-  
+    
   const created = Session(createdSession);
-  created.creator = User(creator);
+  created.creator = session.creator;
 
   return created;
 }
