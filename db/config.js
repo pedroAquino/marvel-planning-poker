@@ -1,5 +1,6 @@
 
 require('dotenv').config();
+import mysql2 from 'mysql2';
 
 const config = {
   username: process.env.DATABASE_USERNAME,
@@ -7,12 +8,13 @@ const config = {
   database: process.env.DATABASE_NAME,
   host: process.env.DATABASE_HOST,
   dialect: "mysql",
+  dialectModule: mysql2,
   pool: {
     max: 5,
     min: 0,
     acquire: 20000,
     idle: 10000
-  }
+  },
 };
 
 module.exports = {
