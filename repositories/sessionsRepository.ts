@@ -1,7 +1,7 @@
+import { v4 as uuid } from 'uuid';
 import { Session, SessionModel } from '../model/Session';
 import models from '../db/models/index';
-import { createUser } from './usersRepository';
-import { User, UserModel } from '../model/User';
+import { UserModel } from '../model/User';
 
 export async function getSessions(): Promise<SessionModel[]> {
   const dbSessions = await models.Sessions.findAll();
@@ -33,14 +33,15 @@ export async function getSession(idOrDisplayId: number | string): Promise<Sessio
   return session;
 }
 
-export async function createSession(session:SessionModel): Promise<SessionModel> {  
+export async function createSession(session:SessionModel, user: UserModel): Promise<SessionModel> {  
+  session.displayId = uuid();
   const createdSession = await models.Sessions.create({
     ...session,
-    UserId: session.creator.id
+    UserId: user.id
   });
     
   const created = Session(createdSession);
-  created.creator = session.creator;
+  created.creator = user;
 
   return created;
 }
