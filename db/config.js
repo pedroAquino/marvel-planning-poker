@@ -1,6 +1,6 @@
 
 require('dotenv').config();
-import mysql2 from 'mysql2';
+const mysql2 = require('mysql2');
 
 const config = {
   username: process.env.DATABASE_USERNAME,
