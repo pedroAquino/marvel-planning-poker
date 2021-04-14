@@ -37,8 +37,10 @@ export default async function handler(req, res) {
   const user = await createUser(_user);
   await addUserToSession(user, session);
 
+  const sessionWithUser = await getSession(session.id);
+
   const event = JoinSessionEvent({
-    session,
+    session: sessionWithUser,
     user
   });
 
