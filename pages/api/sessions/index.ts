@@ -1,7 +1,7 @@
-import { SessionModel, Session } from '../../model/Session';
-import { ApiResponse } from '../../model/Base';
-import { createSession } from '../../repositories/sessionsRepository';
-import { createUser } from '../../repositories/usersRepository';
+import { SessionModel, Session } from '../../../model/Session';
+import { ApiResponse } from '../../../model/Base';
+import { createSession } from '../../../repositories/sessionsRepository';
+import { createUser } from '../../../repositories/usersRepository';
 
 export interface SessionPostRequest {
   session: SessionModel;

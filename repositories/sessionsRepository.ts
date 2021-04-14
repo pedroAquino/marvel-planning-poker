@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { Session, SessionModel } from '../model/Session';
+import { User } from '../model/User';
 import models from '../db/models/index';
 import { UserModel } from '../model/User';
 
@@ -10,6 +11,10 @@ export async function getSessions(): Promise<SessionModel[]> {
 }
 
 export async function getSession(idOrDisplayId: number | string): Promise<SessionModel> {
+  if (!idOrDisplayId) {
+    return null;
+  }
+  
   let where;
   
   if (typeof idOrDisplayId === 'number') {
@@ -24,11 +29,20 @@ export async function getSession(idOrDisplayId: number | string): Promise<Sessio
     };
   }
 
-  const dbSession = await models.Sessions.findAll({ where });
-  const participants = await dbSession[0].getUsers();
+  const dbSession = await models.Sessions.findOne({ where });
 
-  const session = Session(dbSession[0]);
-  session.participants = participants;
+  if (!dbSession) {
+    return null;
+  }
+
+  const participants = await dbSession.getUsers();
+  const creator = await dbSession.getUser();
+
+  const session = Session({
+    ...dbSession.dataValues,
+    participants: participants.map(User),
+    creator: User(creator)
+  });
 
   return session;
 }
