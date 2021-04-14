@@ -17,6 +17,8 @@
     "framer-motion": "^3.10.0",
     "mysql2": "^2.2.5",
     "next": "^10.0.4",
+    "pusher": "^5.0.0",
+    "pusher-js": "^7.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "sequelize": "^6.6.2",
@@ -35,7 +37,8 @@
   "scripts": {
     "test": "jest --watch",
     "dev": "next dev",
-    "build": "next build && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "build": "next build && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "vercel-env-pull": "vercel env pull"
   },
   "repository": {
     "type": "git",

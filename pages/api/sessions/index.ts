@@ -1,7 +1,7 @@
-import { SessionModel, Session } from '../../model/Session';
-import { ApiResponse } from '../../model/Base';
-import { createSession } from '../../repositories/sessionsRepository';
-import { createUser } from '../../repositories/usersRepository';
+import { SessionModel, Session } from '../../../model/Session';
+import { ApiResponse } from '../../../model/Base';
+import { createSession, getSession } from '../../../repositories/sessionsRepository';
+import { addUserToSession, createUser } from '../../../repositories/usersRepository';
 
 export interface SessionPostRequest {
   session: SessionModel;
@@ -28,10 +28,13 @@ export default async function handler(req, res) {
   const user = await createUser(session.creator);
   const createdSession = await createSession(session, user);
 
+  await addUserToSession(user, createdSession);
+  const sessionWithUser = await getSession(createdSession.id);
+
   return res.status(200).json({
     statusCode: '200',
     requestBody: req.body,
-    createdSession,
+    createdSession: sessionWithUser,
     validationErrors: [],
     message: 'Session created with success'
   });
