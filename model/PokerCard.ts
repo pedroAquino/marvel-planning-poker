@@ -1,4 +1,5 @@
-import { MarvelCharacter, IMarvelCharacter } from './MarvelCharacter';
+import { object, string } from 'yup';
+import { BaseModel, validate } from './Base';
 
 export enum PokerCardSize {
   one = '1',
@@ -9,13 +10,29 @@ export enum PokerCardSize {
   thirteen = '13',
 }
 
-export interface IPokerCard {
-  marvelCharacter: IMarvelCharacter;
+export interface PokerCardModel extends BaseModel {
   size: PokerCardSize;
 }
 
-export const PokerCard = ({ marvelCharacter = MarvelCharacter(), size = PokerCardSize['one'] }): IPokerCard => ({
-  marvelCharacter,
-  size
+const schema = object().shape({
+  size: string().oneOf([
+    PokerCardSize['one'],
+    PokerCardSize['two'],
+    PokerCardSize['three'],
+    PokerCardSize['five'],
+    PokerCardSize['eight'],
+    PokerCardSize['thirteen']
+  ])
 });
+
+export function PokerCard({ size = PokerCardSize['one'] } = {}): PokerCardModel {
+  const model = {
+    size,
+  };
+  
+  return {
+    ...model,
+    validate: () => validate(model, schema),
+  }
+};
  

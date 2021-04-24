@@ -8,6 +8,7 @@ export interface SessionModel extends BaseModel  {
   name: string;
   creator: UserModel;
   participants: UserModel[];
+  hasParticipant: (userId: number) => boolean;
 }
 
 export const sessionSchema = object().shape({
@@ -26,9 +27,14 @@ export function Session({id = 0, displayId='', name='', creator = null, particip
     creator,
     participants
   };
+
+  function hasParticipant(userId: number): boolean {
+    return model.participants.find(participant => participant.id === userId);
+  }
   
   return {
     ...model,
+    hasParticipant,
     validate: () => validate(model, sessionSchema)
   }
 };
