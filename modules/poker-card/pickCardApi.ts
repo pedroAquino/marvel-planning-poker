@@ -1,6 +1,5 @@
 import { ApiResponse } from '../shared/model/Base';
-import { PickCardEventModel } from './PickCardEvent';
-import { triggerPickCardEvent } from '../shared/real-time/realTimeProvider';
+import { PickCardEventModel, PickCardEvent } from './PickCardEvent';
 import { getSession } from '../session/sessionsRepository';
 
 interface PickCardEventRequest {
@@ -13,7 +12,7 @@ interface PickCardEventResponse extends ApiResponse<PickCardEventRequest> {
 
 export default async function handler(req, res) {
   const { sessionDisplayId } = req.query;
-  const event = req.body.event;
+  const event = PickCardEvent(req.body.event);
   const session = await getSession(sessionDisplayId);
 
   if (!session) {
@@ -42,7 +41,7 @@ export default async function handler(req, res) {
     });
   }
 
-  await triggerPickCardEvent(event);
+  await event.trigger();
 
   const response: PickCardEventResponse = {
     statusCode: '200',

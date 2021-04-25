@@ -3,7 +3,6 @@ import { JoinSessionEventModel, JoinSessionEvent } from './JoinSessionEvent';
 import { UserModel } from '../../user/User';
 import { createUser, addUserToSession } from '../../user/usersRepository';
 import { getSession } from '../sessionsRepository';
-import { triggerJoinSessionEvent } from '../../shared/real-time/realTimeProvider';
 
 interface JoinSessionRequest {
   user: UserModel;
@@ -44,7 +43,7 @@ export default async function handler(req, res) {
     user
   });
 
-  await triggerJoinSessionEvent(event);
+  await event.trigger();
 
   const response: JoinSessionResponse = {
     statusCode: '200',
