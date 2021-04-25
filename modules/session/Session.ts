@@ -1,6 +1,6 @@
 import { string, object, array, number } from 'yup';
-import { BaseModel, validate } from './Base';
-import { UserModel, userSchema } from './User';
+import { BaseModel, validate } from '../shared/model/Base';
+import { UserModel, userSchema } from '../user/User';
 
 export interface SessionModel extends BaseModel  {
   id: number;

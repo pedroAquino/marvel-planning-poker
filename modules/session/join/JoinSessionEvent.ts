@@ -1,5 +1,5 @@
-import { UserModel, User } from './User';
-import { SessionModel, Session } from './Session';
+import { UserModel, User } from '../..//user/User';
+import { SessionModel, Session } from '../Session';
 
 export interface JoinSessionEventModel {
   session: SessionModel;

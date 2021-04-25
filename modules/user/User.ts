@@ -1,5 +1,5 @@
 import { string, object, number } from 'yup';
-import { BaseModel, validate } from './Base';
+import { BaseModel, validate } from '../shared/model/Base';
 
 export enum UserRole {
   OBSERVER = 'OBSERVER',

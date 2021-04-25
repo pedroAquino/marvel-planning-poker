@@ -1,5 +1,5 @@
 import { createMocks } from 'node-mocks-http';
-import handler, { SessionPostRequest, SessionPostResponse } from '../../pages/api/sessions';
+import handler, { SessionPostRequest, SessionPostResponse } from './createSessionApi';
 
 describe('/api/sessions tests', () => {
   const requestBody: SessionPostRequest = {

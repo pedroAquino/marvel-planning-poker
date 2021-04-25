@@ -1,6 +1,6 @@
-import { UserModel, User } from '../model/User';
-import models from '../db/models/index';
-import { SessionModel } from '../model/Session';
+import { UserModel, User } from './User';
+import models from '../shared/db/models/index';
+import { SessionModel } from "../session/Session";
 
 export async function getUsers() {
   const dbUsers = await models.Users.findAll();

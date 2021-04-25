@@ -1,5 +1,5 @@
 import { PokerCard, PokerCardModel } from "./PokerCard";
-import { User, UserModel } from "./User";
+import { User, UserModel } from "../user/User";
 
 export interface PickCardEventModel {
   user: UserModel;

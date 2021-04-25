@@ -1,5 +1,5 @@
 import { object, string } from 'yup';
-import { BaseModel, validate } from './Base';
+import { BaseModel, validate } from '../shared/model/Base';
 
 export enum PokerCardSize {
   one = '1',

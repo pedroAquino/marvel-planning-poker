@@ -1,8 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { Session, SessionModel } from '../model/Session';
-import { User } from '../model/User';
-import models from '../db/models/index';
-import { UserModel } from '../model/User';
+import { Session, SessionModel } from './Session';
+import { User, UserModel } from '../user/User';
+import models from '../shared/db/models/index';
 
 export async function getSessions(): Promise<SessionModel[]> {
   const dbSessions = await models.Sessions.findAll();
