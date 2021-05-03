@@ -1,7 +1,7 @@
 import { PokerCard, PokerCardModel } from "./PokerCard";
-import { User, UserModel } from "../user/User";
-import { Event } from "../shared/model/Event";
-import { CHANNELS, EVENTS, triggerEvent } from "../shared/real-time/realTimeProvider";
+import { User, UserModel } from "../User";
+import { Event } from "../../shared/model/Event";
+import { CHANNELS, EVENTS, triggerEvent } from "../../shared/real-time/realTimeProvider";
 
 type PickCardEvent = {
   user: UserModel;

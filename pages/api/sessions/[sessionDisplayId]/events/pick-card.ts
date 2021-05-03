@@ -1,3 +1,3 @@
-import handler from '../../../../../modules/poker-card/pickCardApi';
+import handler from '../../../../../modules/user/poker-card/pickCardApi';
 
 export default handler;

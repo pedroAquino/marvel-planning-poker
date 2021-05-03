@@ -1,58 +1,60 @@
 import { ApiResponse } from '../../shared/model/Base';
-import { JoinSessionEventModel, JoinSessionEvent } from './JoinSessionEvent';
-import { UserModel } from '../../user/User';
-import { createUser, addUserToSession } from '../../user/usersRepository';
-import { getSession } from '../sessionsRepository';
-
-interface JoinSessionRequest {
-  user: UserModel;
-}
-
-interface JoinSessionResponse extends ApiResponse<JoinSessionRequest> {
-  createdUser: UserModel;
-  sentEvent: JoinSessionEventModel;
-}
+import { User } from '../../user/User';
+import { Session } from '../Session';
 
 export default async function handler(req, res) {
-  const _user = req.body.user;
-  const { sessionDisplayId } = req.query;
+  const { sessionDisplayId: displayId } = req.query;
+  const user = User(req.body.user);
+  const session = Session({ displayId });
 
-  const session = await getSession(sessionDisplayId);
-  
+  await session.fetch();
+
   if (!session) {
-    return res.status(400).json({
-      statusCode: '400',
-      requestBody: req.body,
-      validationErrors: [{
-        field: 'displayId',
-        messages: ['invalid session display id provided on the querystring'],
-      }],
-      message: 'join session event could not be sent',
-      createdUser: null,
-      sentEvent: null
-    });
+    return res.status(404).json(
+      ApiResponse({
+        statusCode: 404,
+        requestBody: req.body,
+        validationErrors: [{
+          field: 'displayId',
+          messages: ['invalid session display id provided on the querystring'],
+        }],
+        message: 'join session event could not be sent',
+      }).withModel({
+        createdUser: null,
+        sentEvent: null
+      })
+    );
   }
 
-  const user = await createUser(_user);
-  await addUserToSession(user, session);
+  const validationErrors = await user.validate();
 
-  const sessionWithUser = await getSession(session.id);
+  if (validationErrors.length > 0) {
+    return res.status(400).json(
+      ApiResponse({
+        statusCode: 400,
+        requestBody: req.body,
+        validationErrors,
+        message: 'join session event could not be sent',
+      }).withModel({
+        createdUser: null,
+        sentEvent: null
+      })
+    );
+  }
 
-  const event = JoinSessionEvent({
-    session: sessionWithUser,
-    user
-  });
+  await user.save();
+  const sentEvent = await session.join(user);
 
-  await event.trigger();
+  return res.status(200).json(
+    ApiResponse({
+      statusCode: 200,
+      requestBody: req.body,
+      validationErrors: [],
+      message: 'join session event sent with success',
+    }).withModel({
+      createdUser: user,
+      sentEvent
+    })
+  );
 
-  const response: JoinSessionResponse = {
-    statusCode: '200',
-    requestBody: req.body,
-    validationErrors: [],
-    message: 'join session event sent with success',
-    createdUser: user,
-    sentEvent: event
-  };
-
-  return res.status(200).json(response);
 }

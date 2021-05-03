@@ -1,5 +1,5 @@
 import { createMocks } from 'node-mocks-http';
-import handler from '../../pages/api/sessions/[sessionDisplayId]/events/pick-card';
+import handler from './pickCardApi';
 
 describe('api/sessions/{sessionDisplayId}/events/pick-card api tests', () => {
 

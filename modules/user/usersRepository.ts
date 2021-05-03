@@ -8,6 +8,12 @@ export async function getUsers() {
   return users;
 }
 
+export async function getUser(id: number) {
+  return await models.Users.findOne({
+    where: { id }
+  });
+}
+
 export async function createUser(user: UserModel): Promise<UserModel> {
   const created = await models.Users.create(user);
   return User(created);
