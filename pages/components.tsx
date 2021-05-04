@@ -1,10 +1,10 @@
 import { Box, Stack, Heading, useDisclosure } from '@chakra-ui/react';
-import Logo from '../components/Logo';
-import Button from '../components/Button';
-import PokerCard from '../components/PokerCard';
-import Modal from '../components/Modal';
-import JoinSessionForm from '../components/JoinSessionForm';
-import StartNewSession from '../components/StartNewSessionForm';
+import Logo from '../modules/shared/components/Logo';
+import Button from '../modules/shared/components/Button';
+import PokerCard from '../modules/session/components/PokerCard';
+import Modal from '../modules/shared/components/Modal';
+import JoinSessionForm from '../modules/session/components/JoinSessionForm';
+import StartNewSession from '../modules/session/components/StartNewSessionForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
