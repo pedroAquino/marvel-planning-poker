@@ -1,11 +1,17 @@
-import { UserModel, User } from '../model/User';
-import models from '../db/models/index';
-import { SessionModel } from '../model/Session';
+import { UserModel, User } from './User';
+import models from '../shared/db/models/index';
+import { SessionModel } from "../session/Session";
 
 export async function getUsers() {
   const dbUsers = await models.Users.findAll();
   const users = dbUsers.map(User);
   return users;
+}
+
+export async function getUser(id: number) {
+  return await models.Users.findOne({
+    where: { id }
+  });
 }
 
 export async function createUser(user: UserModel): Promise<UserModel> {

@@ -1,7 +1,7 @@
 import { Center, CenterProps } from "@chakra-ui/layout";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "./Button";
+import Button from "../../shared/components/Button";
 
 function SessionsPageActionsPanel({ ...props }: CenterProps) {
   return (

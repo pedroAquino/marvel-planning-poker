@@ -1,6 +1,6 @@
 import { Stack, Input } from '@chakra-ui/react';
 import { MouseEventHandler } from 'react';
-import Button from './Button';
+import Button from '../../shared/components/Button';
 
 interface JoinSessionFormProps {
   onJoinSession: MouseEventHandler<HTMLButtonElement>;

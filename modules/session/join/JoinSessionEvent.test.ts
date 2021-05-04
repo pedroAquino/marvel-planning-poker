@@ -1,5 +1,5 @@
 import { JoinSessionEvent } from './JoinSessionEvent';
-import { User } from './User';
+import { User } from '../../user/User';
 
 describe('JoinSessionEvent tests', () => {
   const joinSessionEvent = {

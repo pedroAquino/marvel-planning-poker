@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Box, Heading, Center } from '@chakra-ui/react';
-import getDimensions from './helpers/getDimensions';
+import getDimensions from '../helpers/getDimensions';
 
 interface LogoProps {
   color?: any;

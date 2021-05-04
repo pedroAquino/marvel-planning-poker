@@ -1,7 +1,7 @@
 import { Box, Center, Heading, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
-import { getDimensions, decreaseBy } from './helpers/getDimensions';
-import Logo from './Logo';
+import { getDimensions, decreaseBy } from '../../shared/helpers/getDimensions';
+import Logo from '../../shared/components/Logo';
 
 export interface PokerCardProps {
   imgSrc: string;

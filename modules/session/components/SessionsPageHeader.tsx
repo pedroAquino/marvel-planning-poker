@@ -1,5 +1,5 @@
 import { Center } from "@chakra-ui/layout";
-import Logo from "./Logo";
+import Logo from "../../shared/components/Logo";
 
 function SessionsPageHeader() {
   return (
