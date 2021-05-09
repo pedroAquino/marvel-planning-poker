@@ -15,6 +15,7 @@ export const CHANNELS = {
 export const EVENTS = {
   JOIN_SESSION_EVENT: 'join-session-event',
   PICK_CARD_EVENT: 'pick-card-event',
+  SHOW_ALL_CARDS_EVENT: 'show-all-cards-event'
 };
 
 export interface TriggerEventRequest {
