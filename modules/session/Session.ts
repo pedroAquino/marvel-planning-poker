@@ -4,6 +4,7 @@ import { TriggerEventResponse } from '../shared/real-time/realTimeProvider';
 import { UserModel, userSchema } from '../user/User';
 import { addUserToSession } from '../user/usersRepository';
 import { JoinSessionEvent } from './join/JoinSessionEvent';
+import { ShowAllCardsEvent } from './show-all-cards/ShowAllCardsEvent';
 import { createSession, getSession } from './sessionsRepository';
 
 export interface SessionModel  {
@@ -17,6 +18,7 @@ export interface SessionModel  {
 interface SessionModelMethods extends BaseModel, Persistable<SessionModel> {
   hasParticipant: (userId: number) => boolean;
   join: (user: UserModel) => Promise<TriggerEventResponse>;
+  showAllCards: (sender: UserModel) => Promise<TriggerEventResponse>;
 }
 
 export const sessionSchema = object().shape({
@@ -44,7 +46,8 @@ export function Session({id = 0, displayId='', name='', creator = null, particip
     },
 
     hasParticipant(userId: number): boolean {
-      return this.participants.find(participant => participant.id === userId);
+      const participants = [...this.participants, this.creator];
+      return participants.find(participant => participant.id === userId);
     },
   
     async join(user: UserModel) {
@@ -59,6 +62,12 @@ export function Session({id = 0, displayId='', name='', creator = null, particip
         user
       });
   
+      return await event.trigger();
+    },
+
+    async showAllCards(sender: UserModel) {
+      // @ts-ignore
+      const event = ShowAllCardsEvent({ sender });
       return await event.trigger();
     },
   
